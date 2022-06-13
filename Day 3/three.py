@@ -3,7 +3,7 @@ def process(input):
     data_str  = open("three.txt").read().splitlines()
     return data_str[1:]
 
-def threeOne(input):
+def threeOne(input): #some changes
     
     gam = ""
     eps = ""
