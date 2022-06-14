@@ -5,6 +5,12 @@ def process(input):
 
 def threeOne(input): #some changes
     
+    gam,eps = getGamEps(input)
+    return int(gam,2)*int(eps,2)
+
+def getGamEps(input):
+
+       
     gam = ""
     eps = ""
 
@@ -28,8 +34,25 @@ def threeOne(input): #some changes
             eps += '1'
             gam += '0'
 
-    return int(gam,2)*int(eps,2)
+    return gam,eps
 
+def threeTwo(input):
 
+    oxy = ""
+    car = ""
+
+    gam,eps = getGamEps(input)
+
+    if gam in input:
+        oxy = gam
+    if eps in input:
+        car = eps
+
+    
+    return input
+                
+
+                
+                
 
 print(threeOne(process("three.txt")))
