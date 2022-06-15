@@ -34,25 +34,43 @@ def getGamEps(input):
             eps += '1'
             gam += '0'
 
-    return gam,eps
+    return gam,eps     
 
-def threeTwo(input):
+def validate(index,l,val):
+    y = list(filter(lambda x: x[index]==val,l))
+    return y
 
-    oxy = ""
-    car = ""
+def getMostCommonCar(index,l):
+    sum = 0
+    for line in l:
+        if line[index]=='1':
+            sum += 1
+    if sum >= len(l)//2: #
+        return '1'
+    else:
+        return '0'
 
-    gam,eps = getGamEps(input)
+def getMostCommonOxy(index,l):
+    sum = 0
+    for line in l:
+        if line[index]=='1':
+            sum += 1
+    if sum < len(l)//2: #
+        return '1'
+    else:
+        return '0'
 
-    if gam in input:
-        oxy = gam
-    if eps in input:
-        car = eps
+def threeTwo(input,i,oxy):
+    if len(input)==1 or i==len(input[0]):
+        return input[0]
+    else:
+        if oxy:
+            val = getMostCommonOxy(i,input)
+        else:
+            val = getMostCommonCar(i,input)
 
-    
-    return input
-                
-
-                
-                
+        input = validate(i,input,val)
+        return threeTwo(input,i+1,oxy)
 
 print(threeOne(process("three.txt")))
+print(int(threeTwo(process("three.txt"),0,True),2) * int(threeTwo(process("three.txt"),0,False),2))
